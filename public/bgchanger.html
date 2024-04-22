@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="output.css" />
+		<title>BgCHANGER</title>
+	</head>
+	<body class="p-0 m-0 box-border bg-sea">
+		<header class="bg-dark text-sea flex justify-between">
+			<h1 class="text-4xl p-5 rounded-2xl">4 Javascript Projects</h1>
+			<h3 class="p-5 text-3xl"><a href="./index.html">Home</a></h3>
+	
+		</header>
+		<div class="h-screen w-screen flex flex-col">
+			<h1 class="text-4xl text-sea h-min p-5 m-10 bg-dark rounded-2xl mx-auto">
+				Choose Your background color
+			</h1>
+			<div class="mx-auto">
+				<button
+					class="text-3xl text-white h-min p-5 m-10 bg-red-500 rounded-2xl"
+					id="red"
+				>
+					Red
+				</button>
+				<button
+					class="text-3xl text-white h-min p-5 m-10 bg-blue-950 rounded-2xl"
+					id="blue"
+				>
+					Blue
+				</button>
+				<button
+					class="text-3xl text-white h-min p-5 m-10 bg-green-950 rounded-2xl"
+					id="green"
+				>
+					Green
+				</button>
+				<button
+					class="text-3xl text-white h-min p-5 m-10 bg-yellow-500 rounded-2xl"
+					id="yellow"
+				>
+					Yellow
+				</button>
+
+				<button
+					class="text-3xl text-white h-min p-5 m-10 bg-purple-950 rounded-2xl"
+					id="purple"
+				>
+					Purple
+				</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		const red = document.getElementById("red");
+		const blue = document.getElementById("blue");
+		const green = document.getElementById("green");
+		const yellow = document.getElementById("yellow");
+		const purple = document.getElementById("purple");
+		red.addEventListener("click", () => {
+			document.body.style.backgroundColor = "red";
+			console.log("red");
+		});
+		blue.addEventListener("click", () => {
+			document.body.style.backgroundColor = "blue";
+		});
+		green.addEventListener("click", () => {
+			document.body.style.backgroundColor = "green";
+		});
+		yellow.addEventListener("click", () => {
+			document.body.style.backgroundColor = "yellow";
+		});
+		purple.addEventListener("click", () => {
+			document.body.style.backgroundColor = "purple";
+		});
+	</script>
+</html>

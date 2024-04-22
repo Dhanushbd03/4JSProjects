@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="overflow-hidden">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="output.css" />
+		<title>BMI Calculator</title>
+	</head>
+	<body class="bg-sea h-screen w-screen">
+		<header class="bg-dark text-sea flex justify-between">
+			<h1 class="text-4xl p-5 rounded-2xl">4 Javascript Projects</h1>
+			<h3 class="p-5 text-3xl"><a href="./index.html">Home</a></h3>
+	
+		</header>
+		<div class="flex gap-5 w-auto justify-center my-16">
+			<div class="flex flex-col bg-dark w-1/4 mt-10 rounded-2xl h-fit">
+				<h1
+					class="w-full h-full text-4xl text-sea p-5 rounded-2xl mx-auto text-center"
+				>
+					BMI Calculator
+				</h1>
+				<div class="w-full h-full flex mx-auto">
+					<div class="w-full h-full mx-auto flex flex-col text-sea" id="result">
+						<div class="h-full">
+							<h3 class="text-3xl text-center">Your BMI is</h3>
+							<div class="w-full h-full flex flex-col gap-0 my-10">
+								<p class="text-5xl mx-auto" id="bmiValue"></p>
+								<p class="text-2xl mx-auto" id="bmiStatus"></p>
+							</div>
+						</div>
+						<button type="button" id="backbutton" class="p-5">
+							⬅️ back to home
+						</button>
+					</div>
+					<form
+						class="mx-auto flex flex-col gap-5 w-full p-5"
+						id="calculate"
+						action="submit"
+					>
+						<input
+							type="text"
+							name="weight"
+							id="weight"
+							placeholder="Enter your weight in kg"
+							class="bg-sea border-b-2 border-dark p-3 text-dark rounded-2xl"
+							required
+						/>
+						<input
+							type="text"
+							name="height"
+							id="height"
+							placeholder="Enter your height in m"
+							class="bg-sea border-b-2 border-dark p-3 text-dark rounded-2xl"
+							required
+						/>
+						<button
+							type="submit"
+							name="submit"
+							class="bg-darker text-sea p-5 rounded-2xl"
+						>
+							Calculate BMI
+						</button>
+					</form>
+				</div>
+			</div>
+			<div
+				class="flex-col bg-dark rounded-2xl w-1/4 p-10 mt-10 text-sea h-fit"
+				id="data"
+			>
+				<table class="border border-collapse">
+					<thead>
+						<tr>
+							<th class="border border-gray-300 px-4 py-1">BMI</th>
+							<th class="border border-gray-300 px-4 py-1">Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th class="border border-gray-300 px-4 py-1">Under 18.5</th>
+							<th class="border border-gray-300 px-4 py-1">Underweight</th>
+						</tr>
+						<tr>
+							<th class="border border-gray-300 px-4 py-1">18.5 - 24.9</th>
+							<th class="border border-gray-300 px-4 py-1">Normal</th>
+						</tr>
+						<tr>
+							<th class="border border-gray-300 px-4 py-2">25 - 29.9</th>
+							<th class="border border-gray-300 px-4 py-1">Overweight</th>
+						</tr>
+						<tr>
+							<th class="border border-gray-300 px-4 py-1">30 and over</th>
+							<th class="border border-gray-300 px-4 py-1">Obese</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script>
+		const calculate = document.getElementById("calculate");
+		const result = document.getElementById("result");
+		const bmiValue = document.getElementById("bmiValue");
+		const backbutton = document.getElementById("backbutton");
+		const data = document.getElementById("data");
+		const bmiStatus = document.getElementById("bmiStatus");
+		data.style.display = "none";
+		result.style.display = "none";
+
+		calculate.addEventListener("submit", (event) => {
+			event.preventDefault();
+			const weight = document.getElementById("weight").value;
+			const height = document.getElementById("height").value;
+			if (isNaN(height) || isNaN(weight)) {
+				alert("Please enter a number");
+				return;
+			}
+
+			const bmi = (weight / (height * height)).toFixed(2);
+
+			if (bmi < 18.5) {
+				bmiStatus.innerHTML = "Underweight";
+			} else if (bmi >= 18.5 && bmi <= 24.9) {
+				bmiStatus.innerHTML = "Normal";
+			} else if (bmi >= 25 && bmi <= 29.9) {
+				bmiStatus.innerHTML = "Overweight";
+			} else {
+				bmiStatus.innerHTML = "Obese";
+			}
+
+			bmiValue.innerHTML = bmi;
+			result.style.display = "block";
+			data.style.display = "flex";
+			calculate.style.display = "none";
+		});
+
+		backbutton.addEventListener("click", () => {
+			result.style.display = "none";
+			calculate.style.display = "";
+			data.style.display = "none";
+			//set input value to empty
+			document.getElementById("weight").value = "";
+			document.getElementById("height").value = "";
+		});
+	</script>
+</html>
