@@ -39,19 +39,22 @@
 			<div class="text-sea rounded-lg p-8 w-full">
 				<h1 class="text-2xl font-bold mb-4">Guess the Number</h1>
 
-				<input
-					type="number"
-					class="border rounded-lg text-dark w-full p-2 mb-4 bg-sea"
-					placeholder="Enter your guess..."
-					id="guess"
-				/>
+				<form action="submit" id="submit">
+					<input
+						type="number"
+						class="border rounded-lg text-dark w-full p-2 mb-4 bg-sea"
+						placeholder="Enter your guess..."
+						id="guess"
+                        
+					/>
 
-				<button
-					class="border rounded-lg text-dark w-full p-2 mb-4 bg-sea"
-					id="submit"
-				>
-					Submit
-				</button>
+					<button
+						class="border rounded-lg text-dark w-full p-2 mb-4 bg-sea"
+						type="submit"
+					>
+						Submit
+					</button>
+				</form>
 				<h3 class="text-2xl font-bold mb-4">
 					No of chances: <span id="chances"></span>
 				</h3>
@@ -79,12 +82,16 @@
 			gamediv.style.display = "block";
 		});
 
-		submit.addEventListener("click", () => {
+		submit.addEventListener("submit", (event) => {
+			event.preventDefault();
 			let guessValue = parseInt(guess.value);
+			console.log(guessValue);
 
 			if (guessValue === randomNumber) {
 				alert("You won 🏆 ");
 				window.location.href = "./guessgame.html";
+			} else if (isNaN(guessValue)) {
+				alert("enter a number");
 			} else if (guessValue < randomNumber) {
 				alert("Too low");
 				noofchances--;
@@ -99,7 +106,7 @@
 			chances.innerHTML = noofchances;
 
 			previousGuess.innerHTML = guessValue;
-            guess.value="";
+			guess.value = "";
 			if (noofchances === 0) {
 				alert("gameover");
 				window.location.href = "./guessgame.html";
